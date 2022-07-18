@@ -3,7 +3,7 @@
 	"name": "Change Case Plugin",
 	"version": "1.0.1",
 	"minAppVersion": "0.12.0",
-	"description": "This is a very poorly programmed plugin for Obsidian. This plugin uses npm packge change-case-all to do just that: change cases.",
+	"description": "This is a very poorly programmed plugin for Obsidian. As the name implies this plugin do just that: change cases.",
 	"author": "Leonardo Shibata",
 	"authorUrl": "https://obsidian.md",
 	"isDesktopOnly": true
