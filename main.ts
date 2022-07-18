@@ -1,19 +1,22 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-import {lowerCase, upperCase, titleCase, swapCase} from 'change-case-all';
 
 
 // Remember to rename these classes and interfaces!
 
 
-interface MyPluginSettings {
+interface ChangeCaseSettings {
 	mySetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: ChangeCaseSettings = {
 	mySetting: 'default'
 }
 
-export default class MyPlugin extends Plugin {
+function titleCase() {
+
+}
+
+export default class ChangeCase extends Plugin {
 	settings: MyPluginSettings;
 
 	async onload() {
@@ -21,36 +24,43 @@ export default class MyPlugin extends Plugin {
 
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
-			id: 'lower-case',
-			name: 'Change to lower case',
+			id: 'lowercase',
+			name: 'Change to lowercase',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection(lowerCase(editor.getSelection()));
+				editor.replaceSelection(editor.getSelection().toLowerCase());
 			}
 		});
 
 		this.addCommand({
-			id: 'upper-case',
-			name: 'Change to upper case',
+			id: 'uppercase',
+			name: 'Change to UPPERCASE',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection(upperCase(editor.getSelection()));
+				editor.replaceSelection(editor.getSelection().toUpperCase());
 			}
 		});
 
 		this.addCommand({
-			id: 'title-case',
-			name: 'Change to title case',
+			id: 'sentence-case',
+			name: 'Change to Sentence case.',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection(titleCase(lowerCase(editor.getSelection())));
+				let sentence: string = editor.getSelection();
+
+				editor.replaceSelection(
+					sentence[0].toUpperCase() + sentence.substring(1).toLowerCase());
 			}
 		});
 
 		this.addCommand({
-			id: 'swap-case',
-			name: 'Swap case',
+			id: 'capitalize-each-word',
+			name: 'Capitalize Each Word',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection(swapCase(editor.getSelection()));
+				let sentence: string = editor.getSelection();
+
+				editor.replaceSelection(
+					sentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()))
 			}
 		});
+
 
 	}
 
