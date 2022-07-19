@@ -12,9 +12,7 @@ const DEFAULT_SETTINGS: ChangeCaseSettings = {
 	mySetting: 'default'
 }
 
-function titleCase() {
 
-}
 
 export default class ChangeCase extends Plugin {
 	settings: MyPluginSettings;
@@ -43,7 +41,7 @@ export default class ChangeCase extends Plugin {
 			id: 'sentence-case',
 			name: 'Change to Sentence case.',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				let sentence: string = editor.getSelection();
+				const sentence: string = editor.getSelection();
 
 				editor.replaceSelection(
 					sentence[0].toUpperCase() + sentence.substring(1).toLowerCase());
@@ -54,7 +52,7 @@ export default class ChangeCase extends Plugin {
 			id: 'capitalize-each-word',
 			name: 'Capitalize Each Word',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				let sentence: string = editor.getSelection();
+				const sentence: string = editor.getSelection();
 
 				editor.replaceSelection(
 					sentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()))
