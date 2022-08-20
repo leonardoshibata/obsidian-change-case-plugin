@@ -39,7 +39,7 @@ export default class ChangeCase extends Plugin {
 
 		this.addCommand({
 			id: 'sentence-case',
-			name: 'Change to Sentence case.',
+			name: 'Change to Sentence case',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				const sentence: string = editor.getSelection();
 
@@ -55,7 +55,7 @@ export default class ChangeCase extends Plugin {
 				const sentence: string = editor.getSelection();
 
 				editor.replaceSelection(
-					sentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()))
+					sentence.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()))
 			}
 		});
 
